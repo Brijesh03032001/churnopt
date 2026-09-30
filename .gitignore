@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Environments
+venv/
+.venv/
+env/
+.env
+
+# Tooling
+.pytest_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+.mypy_cache/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+
+# Logs and local runs
+logs/
+
+# Trained model binary: recreate with `make pipeline`
+models/*.joblib
+
+# Superseded first version, kept locally for reference only. Delete before publishing.
+archive/
