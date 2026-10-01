@@ -1,0 +1,88 @@
+# Project Configuration
+#
+# Data: IBM Telco customer churn sample dataset (7,043 synthetic customers, one
+# California telco, one observed quarter). It is cross-sectional: there is no
+# customer history, so every probability here means "churns during the observed
+# quarter", not "churns next month".
+
+paths:
+  raw_data: "data/raw/telco.csv"
+  outputs: "outputs"
+  figures: "outputs/figures"
+  models: "models"
+  sql: "sql"
+
+random_seed: 42
+
+data:
+  id_column: "customer_id"
+
+  # Target: 'Yes' in the raw "Churn Label" column
+  target_source: "churn_label"
+  positive_label: "Yes"
+
+  # Columns that are never model inputs, with the reason. The leakage audit
+  # (outputs/leakage_audit.csv) measures what the post-outcome ones would do.
+  excluded_columns:
+    customer_status: "Defines the target (Churned / Stayed / Joined)"
+    churn_label: "The target itself"
+    churn_score: "Output of IBM's own churn model, recorded alongside the outcome (r = 0.66 with churn)"
+    churn_category: "Only populated for customers who already churned"
+    churn_reason: "Only populated for customers who already churned"
+    satisfaction_score: "Survey captured around exit: scores 1-2 churn 100%, scores 4-5 churn 0%"
+    cltv: "Opaque corporate formula that cannot be reproduced; adds no predictive lift"
+    country: "Constant (United States)"
+    state: "Constant (California)"
+    quarter: "Constant (Q3)"
+    city: "High-cardinality geography; overfitting risk and near-identifying"
+    zip_code: "High-cardinality geography; overfitting risk and near-identifying"
+    latitude: "Geography; excluded with city and zip code"
+    longitude: "Geography; excluded with city and zip code"
+
+  # Lifetime-cumulative columns. They are measured up to the observation date,
+  # which for a churner is the exit date, so they carry a small look-ahead.
+  # feature_set "strict" drops them; "standard" keeps them. The audit reports both.
+  cumulative_columns:
+    - total_charges
+    - total_revenue
+    - total_long_distance_charges
+    - total_extra_data_charges
+    - total_refunds
+    - number_of_referrals
+
+  feature_set: "standard" # standard | strict
+
+split:
+  test_size: 0.20
+
+cv:
+  n_splits: 5
+  n_repeats: 3
+
+models:
+  logistic:
+    Cs: 10
+    max_iter: 2000
+  hist_gb:
+    learning_rate: 0.05
+    max_iter: 300
+    max_depth: 3
+    min_samples_leaf: 40
+    l2_regularization: 1.0
+    early_stopping: true
+    validation_fraction: 0.15
+    n_iter_no_change: 20
+
+calibration:
+  method: "sigmoid" # sigmoid | isotonic
+  cv: 5
+
+selection:
+  metric: "log_loss" # proper scoring rule: rewards calibrated probabilities
+  one_se_rule: true # prefer the simpler model when within 1 SE of the best
+  complexity_order: [prior, contract_only, logistic, hist_gb, hist_gb_calibrated]
+
+evaluation:
+  bootstrap_resamples: 1000
+  ci_level: 0.95
+  calibration_bins: 10
