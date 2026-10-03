@@ -1,0 +1,13 @@
+contract,tenure_band,customers,churned,churn_rate_pct,share_of_all_churners_pct
+Month-to-Month,1: 0-12 months,1913,1024,53.5,54.8
+Month-to-Month,2: 13-24 months,686,278,40.5,14.9
+Month-to-Month,3: 25-48 months,715,264,36.9,14.1
+Month-to-Month,4: 49+ months,296,89,30.1,4.8
+One Year,4: 49+ months,643,82,12.8,4.4
+One Year,3: 25-48 months,546,55,10.1,2.9
+Two Year,4: 49+ months,1300,42,3.2,2.2
+One Year,2: 13-24 months,215,16,7.4,0.9
+One Year,1: 0-12 months,146,13,8.9,0.7
+Two Year,3: 25-48 months,333,6,1.8,0.3
+Two Year,1: 0-12 months,127,0,0.0,0.0
+Two Year,2: 13-24 months,123,0,0.0,0.0

@@ -1,0 +1,2 @@
+customers,churned_customers,churn_rate_pct,monthly_recurring_revenue,monthly_revenue_lost,revenue_lost_pct,avg_charge_churners,avg_charge_stayers
+7043,1869,26.5,456117.0,139131.0,30.5,74.44,61.27
