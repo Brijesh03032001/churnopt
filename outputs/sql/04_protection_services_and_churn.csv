@@ -1,0 +1,10 @@
+internet_type,contract,customers_with,customers_without,churn_pct_with,churn_pct_without,gap_points
+Cable,Month-to-Month,197,226,31.0,55.8,24.8
+Fiber Optic,Month-to-Month,539,1343,41.6,65.7,24.2
+DSL,Month-to-Month,360,427,23.9,41.2,17.3
+Cable,Two Year,194,22,0.0,13.6,13.6
+DSL,One Year,320,86,6.9,16.3,9.4
+Cable,One Year,152,39,11.8,12.8,1.0
+Fiber Optic,One Year,368,219,16.8,16.4,-0.4
+Fiber Optic,Two Year,408,158,5.9,4.4,-1.5
+DSL,Two Year,426,33,2.1,0.0,-2.1

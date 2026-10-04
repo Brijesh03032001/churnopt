@@ -1,0 +1,13 @@
+contract,internet_type,customers,churn_rate_pct,monthly_revenue_lost,share_of_loss_pct,cumulative_share_pct
+Month-to-Month,Fiber Optic,1882,58.8,95594.0,68.7,68.7
+Month-to-Month,DSL,787,33.3,12190.0,8.8,77.5
+Month-to-Month,Cable,423,44.2,11065.0,8.0,85.4
+One Year,Fiber Optic,587,16.7,9976.0,7.2,92.6
+Two Year,Fiber Optic,566,5.5,3246.0,2.3,94.9
+One Year,DSL,406,8.9,2232.0,1.6,96.5
+Month-to-Month,None,518,19.1,1998.0,1.4,98.0
+One Year,Cable,191,12.0,1720.0,1.2,99.2
+Two Year,DSL,459,2.0,622.0,0.4,99.6
+One Year,None,366,2.5,190.0,0.1,99.8
+Two Year,Cable,216,1.4,184.0,0.1,99.9
+Two Year,None,642,0.8,114.0,0.1,100.0
