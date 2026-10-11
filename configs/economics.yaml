@@ -1,0 +1,41 @@
+# Retention Economics
+#
+# EVERY NUMBER IN THIS FILE IS AN ASSUMPTION, not something the dataset contains.
+# The churn model says WHO is likely to leave; whether a retention offer actually
+# changes that outcome (save_rate) can only be measured with a randomized test
+# (see configs/experiment.yaml). The sensitivity analysis shows how much the
+# conclusions depend on each assumption.
+
+# Expected value of contacting customer i:
+#   EV_i = p_i * save_rate * V_i - cost_per_contact
+# p_i is the calibrated churn probability, V_i the margin kept if the customer is saved.
+# The cost is paid for every contacted customer, so wasted offers to customers
+# who would have stayed are already priced in.
+
+offer:
+  cost_per_contact: 25.0 # average cost of the offer (call time plus bill credit)
+  save_rate: 0.30 # share of would-be churners who stay after being contacted
+
+value:
+  gross_margin: 0.40 # share of monthly charge that is margin
+  horizon_months: 12 # months of margin retained for a saved customer
+  monthly_discount_rate: 0.01
+
+budget:
+  max_campaign_budget: 20000.0 # total offer spend for the quarter
+  max_contacts: null # operational capacity; null = no cap
+
+# Rule a business would use without a model
+baseline_rule:
+  contract: "Month-to-Month"
+  internet_type: "Fiber Optic"
+
+sensitivity:
+  save_rate: [0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.50]
+  cost_per_contact: [10, 15, 25, 40, 60, 80]
+  gross_margin: [0.25, 0.40, 0.55]
+  horizon_months: [6, 12, 24]
+
+bootstrap:
+  n_resamples: 1000
+  ci_level: 0.95
