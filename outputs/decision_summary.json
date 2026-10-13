@@ -1,0 +1,95 @@
+{
+  "assumptions": {
+    "cost_per_contact": 25.0,
+    "save_rate": 0.3,
+    "gross_margin": 0.4,
+    "horizon_months": 12,
+    "monthly_discount_rate": 0.01
+  },
+  "budget": {
+    "max_campaign_budget": 20000.0,
+    "max_contacts": null
+  },
+  "contacts_budget_limit": 800,
+  "contacts_profit_maximizing": 2440,
+  "contacts_recommended": 800,
+  "customers_with_positive_ev": 2440,
+  "recommended": {
+    "contacts": 800,
+    "cost": 20000.0,
+    "expected_net": 59441.9040899126,
+    "realized_net": 62304.71240833677,
+    "expected_roi": 2.9720952044956297,
+    "realized_roi": 3.1152356204168385,
+    "precision": 0.8475,
+    "share_of_churners_reached": 0.36276083467094705,
+    "breakeven_save_rate": 0.07552689060938396,
+    "bootstrap_realized_net": {
+      "mean": 62327.06424936398,
+      "lower": 59656.28913211307,
+      "upper": 65008.56806662511,
+      "share_positive": 1.0
+    },
+    "model_vs_rule_net_ratio": 1.8718414510356824
+  },
+  "profit_maximizing": {
+    "contacts": 2440,
+    "cost": 61000.0,
+    "expected_net": 100809.04077816734,
+    "realized_net": 102148.53827077021,
+    "expected_roi": 1.6526072258715958,
+    "breakeven_save_rate": 0.11309627640082515
+  },
+  "unconstrained_optimum": {
+    "contacts": 2440,
+    "expected_net": 100809.04077816734,
+    "cost": 61000.0
+  },
+  "baseline_rule_size": 1882,
+  "policies": [
+    {
+      "policy": "Model: rank by expected value",
+      "contacts": 800,
+      "cost": 20000.0,
+      "value": 82304.712,
+      "net": 62304.712,
+      "roi": 3.115,
+      "churners_reached": 678.0,
+      "precision": 0.848,
+      "share_of_churners_reached": 0.363
+    },
+    {
+      "policy": "Model: rank by churn probability",
+      "contacts": 800,
+      "cost": 20000.0,
+      "value": 77409.226,
+      "net": 57409.226,
+      "roi": 2.87,
+      "churners_reached": 701.0,
+      "precision": 0.876,
+      "share_of_churners_reached": 0.375
+    },
+    {
+      "policy": "Rule: Month-to-Month + Fiber Optic",
+      "contacts": 800,
+      "cost": 20000.0,
+      "value": 53285.251,
+      "net": 33285.251,
+      "roi": 1.664,
+      "churners_reached": 456.0,
+      "precision": 0.57,
+      "share_of_churners_reached": 0.244
+    },
+    {
+      "policy": "Random contacts",
+      "contacts": 800,
+      "cost": 20000.0,
+      "value": 21244.043,
+      "net": 1244.043,
+      "roi": 0.062,
+      "churners_reached": 211.51,
+      "precision": 0.264,
+      "share_of_churners_reached": 0.113
+    }
+  ]
+}
