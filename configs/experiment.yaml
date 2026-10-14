@@ -1,0 +1,23 @@
+# Retention Experiment Design
+#
+# Design only: this project has no campaign data, so it does not report a
+# treatment effect. It sizes the randomized holdout test that would measure
+# the save rate assumed in configs/economics.yaml.
+
+test:
+  alpha: 0.05
+  power: 0.80
+  alternative: "two-sided"
+
+# Save rates the test should be able to detect. A save rate s means a contacted
+# would-be churner stays with probability s, so churn among contacted customers
+# falls from b to b * (1 - s) and the detectable difference is b * s.
+save_rates_to_detect: [0.05, 0.10, 0.15, 0.20, 0.30]
+
+# Share of the contact list randomly held back as the control group
+control_fraction: 0.50
+
+# Monte Carlo check of the analytic power calculation
+simulation:
+  n_trials: 4000
+  seed: 42
