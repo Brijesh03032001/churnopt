@@ -1,0 +1,12 @@
+{
+  "baseline_churn_rate_contacted": 0.8475,
+  "breakeven_save_rate": 0.07552689060938396,
+  "assumed_save_rate": 0.3,
+  "n_treatment_to_detect_breakeven": 573,
+  "n_total_to_detect_breakeven": 1146,
+  "contacts_in_budget": 800,
+  "n_treatment_if_budget_list_is_split": 400,
+  "detectable_save_rate_with_budget_list": 0.0915045187625767,
+  "simulated_power_min": 0.79625,
+  "simulated_power_max": 0.8085
+}
