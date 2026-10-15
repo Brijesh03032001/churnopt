@@ -1,0 +1,75 @@
+{
+  "champion": "hist_gb",
+  "selection_rationale": "simplest model within 1 SE of the best (hist_gb_calibrated) on log_loss",
+  "n_customers": 7043,
+  "n_train": 5634,
+  "n_test": 1409,
+  "churn_rate": 0.2653698707936959,
+  "feature_set": "standard",
+  "n_features": 36,
+  "cv": {
+    "n_splits": 5,
+    "n_repeats": 3,
+    "champion": {
+      "roc_auc": 0.9072987226795489,
+      "pr_auc": 0.7896855171455813,
+      "brier_score": 0.10557853581742228,
+      "brier_skill": 0.45840656641719174,
+      "log_loss": 0.332549696966281,
+      "ece": 0.023840645626879476
+    }
+  },
+  "holdout": {
+    "roc_auc": 0.9106396445271125,
+    "pr_auc": 0.7878067377186628,
+    "brier_score": 0.10488697518547155,
+    "brier_skill": 0.4620627787253917,
+    "log_loss": 0.32792620924975024,
+    "ece": 0.0198837916037968
+  },
+  "holdout_ci": {
+    "roc_auc": [
+      0.8951754254177183,
+      0.9269168347857424
+    ],
+    "pr_auc": [
+      0.7465853665738956,
+      0.8298720851286299
+    ]
+  },
+  "holdout_baselines": {
+    "prior": {
+      "roc_auc": 0.5,
+      "pr_auc": 0.2654364797728886,
+      "brier_score": 0.1949799619120813,
+      "brier_skill": -3.55596336820696e-08,
+      "log_loss": 0.5786668578341829,
+      "ece": 0.027369945174701007
+    },
+    "contract_only": {
+      "roc_auc": 0.7559611459867215,
+      "pr_auc": 0.4321451925643777,
+      "brier_score": 0.1585677806608106,
+      "brier_skill": 0.18674829585348451,
+      "log_loss": 0.469382972432871,
+      "ece": 0.02386158035699902
+    }
+  },
+  "holdout_strict_features": {
+    "roc_auc": 0.8871606086439846,
+    "pr_auc": 0.7440337781434503,
+    "brier_score": 0.11721983701562726,
+    "brier_skill": 0.3988108314598118,
+    "log_loss": 0.36340840565134186,
+    "ece": 0.026796514019238167
+  },
+  "out_of_fold_all_customers": {
+    "roc_auc": 0.9097834627307836,
+    "pr_auc": 0.7889416091450401,
+    "brier_score": 0.10474279413478464,
+    "brier_skill": 0.46271612578884624,
+    "log_loss": 0.32836056255277174,
+    "ece": 0.010602974881668328
+  },
+  "trained_at": "2026-11-03T05:25:37"
+}

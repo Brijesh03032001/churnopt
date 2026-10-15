@@ -1,0 +1,192 @@
+{
+  "data": {
+    "customers": 7043,
+    "churn_rate": 0.265,
+    "monthly_revenue_lost_pct": 30.5,
+    "monthly_recurring_revenue": 456117.0,
+    "monthly_revenue_lost": 139131.0
+  },
+  "model": {
+    "champion": "hist_gb",
+    "holdout": {
+      "roc_auc": 0.9106396445271125,
+      "pr_auc": 0.7878067377186628,
+      "brier_score": 0.10488697518547155,
+      "brier_skill": 0.4620627787253917,
+      "log_loss": 0.32792620924975024,
+      "ece": 0.0198837916037968
+    },
+    "holdout_ci": {
+      "roc_auc": [
+        0.8951754254177183,
+        0.9269168347857424
+      ],
+      "pr_auc": [
+        0.7465853665738956,
+        0.8298720851286299
+      ]
+    },
+    "cv_champion": {
+      "roc_auc": 0.9072987226795489,
+      "pr_auc": 0.7896855171455813,
+      "brier_score": 0.10557853581742228,
+      "brier_skill": 0.45840656641719174,
+      "log_loss": 0.332549696966281,
+      "ece": 0.023840645626879476
+    },
+    "baselines": {
+      "prior": {
+        "roc_auc": 0.5,
+        "pr_auc": 0.2654364797728886,
+        "brier_score": 0.1949799619120813,
+        "brier_skill": -3.55596336820696e-08,
+        "log_loss": 0.5786668578341829,
+        "ece": 0.027369945174701007
+      },
+      "contract_only": {
+        "roc_auc": 0.7559611459867215,
+        "pr_auc": 0.4321451925643777,
+        "brier_score": 0.1585677806608106,
+        "brier_skill": 0.18674829585348451,
+        "log_loss": 0.469382972432871,
+        "ece": 0.02386158035699902
+      }
+    },
+    "holdout_strict_features": {
+      "roc_auc": 0.8871606086439846,
+      "pr_auc": 0.7440337781434503,
+      "brier_score": 0.11721983701562726,
+      "brier_skill": 0.3988108314598118,
+      "log_loss": 0.36340840565134186,
+      "ece": 0.026796514019238167
+    },
+    "strict_feature_set_auc": 0.8775434907855046,
+    "standard_feature_set_auc": 0.8987270930483426,
+    "with_satisfaction_auc": 0.9924199291994495,
+    "with_satisfaction_and_churn_score_auc": 0.9980005834055856,
+    "class_weighted_overestimate_factor": 1.4548291580503407
+  },
+  "decision": {
+    "assumptions": {
+      "cost_per_contact": 25.0,
+      "save_rate": 0.3,
+      "gross_margin": 0.4,
+      "horizon_months": 12,
+      "monthly_discount_rate": 0.01
+    },
+    "budget": {
+      "max_campaign_budget": 20000.0,
+      "max_contacts": null
+    },
+    "contacts_budget_limit": 800,
+    "contacts_profit_maximizing": 2440,
+    "contacts_recommended": 800,
+    "customers_with_positive_ev": 2440,
+    "recommended": {
+      "contacts": 800,
+      "cost": 20000.0,
+      "expected_net": 59441.9040899126,
+      "realized_net": 62304.71240833677,
+      "expected_roi": 2.9720952044956297,
+      "realized_roi": 3.1152356204168385,
+      "precision": 0.8475,
+      "share_of_churners_reached": 0.36276083467094705,
+      "breakeven_save_rate": 0.07552689060938396,
+      "bootstrap_realized_net": {
+        "mean": 62327.06424936398,
+        "lower": 59656.28913211307,
+        "upper": 65008.56806662511,
+        "share_positive": 1.0
+      },
+      "model_vs_rule_net_ratio": 1.8718414510356824
+    },
+    "profit_maximizing": {
+      "contacts": 2440,
+      "cost": 61000.0,
+      "expected_net": 100809.04077816734,
+      "realized_net": 102148.53827077021,
+      "expected_roi": 1.6526072258715958,
+      "breakeven_save_rate": 0.11309627640082515
+    },
+    "unconstrained_optimum": {
+      "contacts": 2440,
+      "expected_net": 100809.04077816734,
+      "cost": 61000.0
+    },
+    "baseline_rule_size": 1882,
+    "policies": [
+      {
+        "policy": "Model: rank by expected value",
+        "contacts": 800,
+        "cost": 20000.0,
+        "value": 82304.712,
+        "net": 62304.712,
+        "roi": 3.115,
+        "churners_reached": 678.0,
+        "precision": 0.848,
+        "share_of_churners_reached": 0.363
+      },
+      {
+        "policy": "Model: rank by churn probability",
+        "contacts": 800,
+        "cost": 20000.0,
+        "value": 77409.226,
+        "net": 57409.226,
+        "roi": 2.87,
+        "churners_reached": 701.0,
+        "precision": 0.876,
+        "share_of_churners_reached": 0.375
+      },
+      {
+        "policy": "Rule: Month-to-Month + Fiber Optic",
+        "contacts": 800,
+        "cost": 20000.0,
+        "value": 53285.251,
+        "net": 33285.251,
+        "roi": 1.664,
+        "churners_reached": 456.0,
+        "precision": 0.57,
+        "share_of_churners_reached": 0.244
+      },
+      {
+        "policy": "Random contacts",
+        "contacts": 800,
+        "cost": 20000.0,
+        "value": 21244.043,
+        "net": 1244.043,
+        "roi": 0.062,
+        "churners_reached": 211.51,
+        "precision": 0.264,
+        "share_of_churners_reached": 0.113
+      }
+    ]
+  },
+  "experiment": {
+    "baseline_churn_rate_contacted": 0.8475,
+    "breakeven_save_rate": 0.07552689060938396,
+    "assumed_save_rate": 0.3,
+    "n_treatment_to_detect_breakeven": 573,
+    "n_total_to_detect_breakeven": 1146,
+    "contacts_in_budget": 800,
+    "n_treatment_if_budget_list_is_split": 400,
+    "detectable_save_rate_with_budget_list": 0.0915045187625767,
+    "simulated_power_min": 0.79625,
+    "simulated_power_max": 0.8085
+  },
+  "figures": {
+    "01_churn_by_contract_tenure": "outputs/figures/01_churn_by_contract_tenure.png",
+    "02_revenue_pareto": "outputs/figures/02_revenue_pareto.png",
+    "03_leakage_audit": "outputs/figures/03_leakage_audit.png",
+    "04_model_comparison": "outputs/figures/04_model_comparison.png",
+    "05_calibration": "outputs/figures/05_calibration.png",
+    "06_gain_curve": "outputs/figures/06_gain_curve.png",
+    "07_profit_curve": "outputs/figures/07_profit_curve.png",
+    "08_policy_comparison": "outputs/figures/08_policy_comparison.png",
+    "09_sensitivity_heatmap": "outputs/figures/09_sensitivity_heatmap.png",
+    "10_tornado": "outputs/figures/10_tornado.png",
+    "11_odds_ratios": "outputs/figures/11_odds_ratios.png",
+    "12_shap_importance": "outputs/figures/12_shap_importance.png",
+    "13_permutation_importance": "outputs/figures/13_permutation_importance.png",
+    "14_experiment_power": "outputs/figures/14_experiment_power.png"
+  }
+}
