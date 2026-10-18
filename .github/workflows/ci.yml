@@ -37,3 +37,17 @@ jobs:
       - name: Run tests
         run: python -m pytest --cov=src --cov-report=term-missing --cov-report=xml
 
+      - name: Run the full pipeline from the raw CSV
+        run: python run_pipeline.py
+
+      - name: Check the headline result did not silently change
+        run: |
+          python - <<'PY'
+          import json
+          m = json.load(open("outputs/results_summary.json"))
+          auc = m["model"]["holdout"]["roc_auc"]
+          ece = m["model"]["holdout"]["ece"]
+          assert 0.89 < auc < 0.93, f"holdout AUC moved to {auc:.3f}"
+          assert ece < 0.05, f"calibration error rose to {ece:.3f}"
+          print(f"holdout AUC {auc:.3f}, ECE {ece:.3f}")
+          PY
