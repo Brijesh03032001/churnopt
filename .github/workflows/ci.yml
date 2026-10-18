@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Lint, test, and run the pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Check formatting and style
+        run: |
+          black --check src tests app run_pipeline.py
+          isort --check-only src tests app run_pipeline.py
+          flake8 src tests app run_pipeline.py --max-line-length=100 --ignore=E203,W503,E501,E226
+
+      - name: Run tests
+        run: python -m pytest --cov=src --cov-report=term-missing --cov-report=xml
+
