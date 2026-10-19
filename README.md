@@ -74,3 +74,47 @@ EV_i = p_i x save_rate x V_i - cost_per_contact
 | Random | \$1.2K | 26% |
 
 ![Policy comparison](outputs/figures/08_policy_comparison.png)
+
+![Sensitivity](outputs/figures/09_sensitivity_heatmap.png)
+
+With no budget limit the profit-maximizing list is 2,440 contacts (\$61K spend, \$101K expected net). Expected and realized profit agree to within 5%, which is the calibration check expressed in dollars.
+
+## Measuring what the model cannot
+
+The model ranks by churn risk, not by who an offer would persuade, and the save rate is assumed. [src/experiments/design.py](src/experiments/design.py) sizes the randomized holdout that would measure it:
+
+- Among the contacted customers about 85% would churn without an offer.
+- Detecting the break-even save rate (7.6%) with 80% power takes **573 customers per arm**.
+- The 800-contact budget list, split 50/50, can only detect a save rate of 9% or more.
+- A Monte Carlo check of each design row gives simulated power of 0.80 to 0.81, matching the target.
+
+## Dashboard
+
+```bash
+make dashboard      # or: streamlit run app/dashboard.py
+```
+
+A retention simulator over the out-of-fold predictions. Sliders for save rate, contact cost, margin, horizon and budget re-rank the customers, re-size the campaign, and re-run the backtest live. Tabs for the campaign, segment explorer, downloadable contact list with risk drivers and a customer lookup, and model quality.
+
+## Quick start
+
+```bash
+make setup            # virtual environment + dependencies
+source venv/bin/activate
+make pipeline         # raw CSV to every figure and table, about a minute
+make test             # 81 tests
+make dashboard
+```
+
+Without `make`:
+
+```bash
+python3 -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+python run_pipeline.py                  # all stages
+python run_pipeline.py --stage decide   # one stage
+```
+
+Stages: `sql`, `train`, `decide`, `experiment`, `explain`, `report`. Each reads what the earlier ones wrote to `outputs/`. After editing [configs/economics.yaml](configs/economics.yaml), `make decide` re-runs only the dollar analysis.
+
+## Repository
