@@ -18,3 +18,25 @@ A churn model, a leakage audit, a SQL analysis, and a profit-based contact polic
 ![Profit curve](outputs/figures/07_profit_curve.png)
 
 ## What makes this different from a typical churn notebook
+
+1. **A leakage audit with numbers.** The dataset ships columns that are really outcomes (a satisfaction survey, another model's churn score, the churn reason). Each exclusion is documented in [configs/project.yaml](configs/project.yaml) and a test fails if any of them reaches the model.
+2. **Calibration before dollars.** Class weighting, the common fix for imbalance, inflates probabilities (here by 1.45x). Decisions multiply probability by value, so the model is trained without it and checked with a reliability curve.
+3. **A decision, not a score.** Expected value per customer, a budget-limited contact list, a backtest against four policies, a break-even save rate, and sensitivity analysis. ROI is net over cost.
+4. **Uncertainty everywhere.** Repeated cross-validation, bootstrap intervals on the holdout and on profit, a one-standard-error rule for model choice.
+5. **SQL, not just pandas.** Six business questions answered in DuckDB with CTEs and window functions, including a like-for-like offer comparison.
+6. **No invented evidence.** There is no A/B result here because there is no experiment. The project designs the randomized test that would measure the save rate, and validates the sample sizes by simulation.
+7. **Reproducible and tested.** One command rebuilds every number and figure from the raw CSV in about a minute. 81 tests, 96% coverage, CI runs the full pipeline.
+
+## Findings
+
+![Churn by contract and tenure](outputs/figures/01_churn_by_contract_tenure.png)
+
+- **Month-to-month customers in their first year are 55% of all churners**, and 54% of them leave.
+- **Churners pay more** (\$74 against \$61 a month), so lost revenue (30.5%) is larger than lost customers (26.5%).
+- **The top three segments are 85% of the revenue lost** ([outputs/figures/02_revenue_pareto.png](outputs/figures/02_revenue_pareto.png)).
+- **Contract type dominates** in every view: odds ratios, SHAP and permutation importance. Two-year contracts cut the odds of churn by about 93% with other factors held fixed.
+- **Tech support or online security** goes with 17 to 25 points less churn within the same plan on month-to-month contracts. Association only.
+- **The retention offers cannot be ranked from this data.** Each offer goes almost entirely to one tenure band, so raw rates compare customer age, not offers. Offer E looks like 53% churn; against no-offer customers in the same tenure band it is still 8 points worse, but nobody randomized who got what.
+
+## Model
+
