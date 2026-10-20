@@ -118,3 +118,37 @@ python run_pipeline.py --stage decide   # one stage
 Stages: `sql`, `train`, `decide`, `experiment`, `explain`, `report`. Each reads what the earlier ones wrote to `outputs/`. After editing [configs/economics.yaml](configs/economics.yaml), `make decide` re-runs only the dollar analysis.
 
 ## Repository
+
+```
+configs/        project.yaml (data, leakage exclusions, CV), economics.yaml, experiment.yaml
+sql/            six DuckDB queries, one business question each
+src/
+  data_ingestion/   loader, validation, stratified split
+  modeling/         features, candidates, evaluation, leakage audit, training
+  decision_engine/  expected value, policies, break-even, sensitivity, action plan
+  experiments/      sample size and power for the randomized test
+  explainability/   odds ratios, permutation importance, SHAP
+  analytics/        SQL runner
+  reporting/        chart style and figures
+app/dashboard.py    Streamlit retention simulator
+notebooks/          01 data audit and SQL findings, 02 model and decisions (executed)
+outputs/            every table, figure and the action plan the pipeline produces
+tests/              81 tests
+docs/METHODOLOGY.md validation protocol, assumptions, limitations
+```
+
+## Limitations
+
+- **Synthetic, single-quarter, single-region sample data.** Nothing here describes real customers.
+- **No time axis.** Probabilities mean "churns during the observed quarter". Drift and forecasting horizons cannot be tested.
+- **Dollar results are conditional on assumptions.** Only an experiment removes that.
+- **Association, not causation.** Odds ratios and SHAP values describe the data, not what would happen if a customer's contract changed.
+- **Cumulative columns carry a small look-ahead** for churners (measured to the exit date). The strict feature set shows the cost of removing them.
+
+See [docs/METHODOLOGY.md](docs/METHODOLOGY.md) for the full protocol and assumptions.
+
+## Data and license
+
+IBM Telco customer churn sample dataset, see [data/README.md](data/README.md). Code under the [MIT License](LICENSE).
+
+Contact: bkumar25@asu.edu
