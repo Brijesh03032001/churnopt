@@ -2,11 +2,12 @@
 
 > A churn model, a leakage audit, a SQL analysis and a profit-based contact policy, built on the IBM Telco sample (**7,043 customers**). The aim is not a high AUC. It is probabilities that mean what they say, so *"who should we contact, and is it worth it?"* has an answer someone can check.
 
-[![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)](https://python.org)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-gradient%20boosting-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
-[![DuckDB](https://img.shields.io/badge/DuckDB-CTEs%20%2B%20windows-FFF000?logo=duckdb&logoColor=black)](https://duckdb.org)
-[![Streamlit](https://img.shields.io/badge/Streamlit-retention%20simulator-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io)
-[![Tests](https://img.shields.io/badge/tests-81%20%7C%2096%25%20coverage-brightgreen)](#)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-A85C00?style=for-the-badge&logo=scikitlearn&logoColor=white)](https://scikit-learn.org)
+[![DuckDB](https://img.shields.io/badge/DuckDB-8A6D00?style=for-the-badge&logo=duckdb&logoColor=white)](https://duckdb.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-C62828?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io)
+[![pytest](https://img.shields.io/badge/pytest-0A6E9E?style=for-the-badge&logo=pytest&logoColor=white)](https://pytest.org)
+![81 tests | 96% coverage](https://img.shields.io/badge/81_tests_%7C_96%25_coverage-2EA043?style=for-the-badge)
 
 ---
 
